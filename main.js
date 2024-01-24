@@ -1,26 +1,23 @@
 const coursesData = [
   {
     title: "Webbutveckling med HTML, CSS och JavaScript",
-    number: "101",
+    number: "1",
     duration: "8 veckor",
     location: "Distans",
-    image: "course1.jpg",
     date: "2024-02-01",
   },
   {
     title: "React.js - Grundläggande och Avancerade Koncept",
-    number: "102",
+    number: "2",
     duration: "10 veckor",
     location: "Klassrum",
-    image: "course2.jpg",
     date: "2024-02-15",
   },
   {
     title: "Mobilapplikationsutveckling med React Native",
-    number: "103",
+    number: "3",
     duration: "12 veckor",
-    location: "Distans",
-    image: "course3.jpg",
+    location: "Distans/Klassrum",
     date: "2024-03-01",
   },
 ];
@@ -44,7 +41,7 @@ function createCourseElement(course) {
     <p>Kursnummer: ${course.number}</p>
     <p>Antal dagar: ${course.duration}</p>
     <p>Tillgänglig som: ${course.location}</p>
-    <img src="${course.image}" alt="${course.title}">
+    <p>${course.title}</p>
     <p>Datum: ${course.date}</p>
     <a href="booking.html?title=${encodeURIComponent(
       course.title
