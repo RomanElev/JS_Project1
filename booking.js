@@ -69,7 +69,7 @@ app.get("/course/bookings", (req, res) => {
 });
 
 // Ny endpoint för att visa bekräftelsessidan
-app.get("/final", (req, res) => {
+app.get("/finalpage.html", (req, res) => {
   // Hämta den senaste bokningen (simulerat)
   const latestBooking = bookingsDatabase[bookingsDatabase.length - 1];
 
@@ -80,7 +80,7 @@ app.get("/final", (req, res) => {
   );
 
   // Skicka kursinformation till bekräftelsessidan
-  res.sendFile(path.join(__dirname, "final.html"), {
+  res.sendFile(path.join(__dirname, "finalpage.html"), {
     courseTitle: courseDetails.courseTitle,
     courseNumber: courseDetails.courseNumber,
     courseDuration: courseDetails.courseDuration,
@@ -115,10 +115,10 @@ function sendConfirmationEmail(userName, courseId) {
   });
 }
 
-app.get("final", (req, res) => {
+app.get("/finalpage", (req, res) => {
   console.log("Hämta bekräftelsesida");
 });
 
-//app.listen(PORT, () => {
-//console.log(`Server is running on port ${PORT}`);
-//});
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
