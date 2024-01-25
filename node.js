@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5500;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Simulera en lista över bokade kurser och nya kurser för användare (temporär lagring i minnet)
+// En lista med bokade kurser och nya kurser för användare
 const bookingsDatabase = [];
 const coursesDatabase = [];
 
@@ -16,7 +16,7 @@ const coursesDatabase = [];
 app.post("/book-course", (req, res) => {
   const { userName, courseId, paymentInfo } = req.body;
 
-  // Lagra bokningsinformationen i databasen (simulerad lagring)
+  // Lagring utav bokningsinformationen i databasen
   const bookingDetails = { userName, courseId, paymentInfo };
   bookingsDatabase.push(bookingDetails);
 
@@ -28,7 +28,7 @@ app.post("/book-course", (req, res) => {
 
 // Endpoint för att hämta användarens bokningshistorik
 app.get("/user/bookings", (req, res) => {
-  // Hämta bokningshistorik från databasen baserat på användar-ID (simulerat)
+  // Hämta bokningshistorik från databasen
   const userName = req.query.userName;
   const userBookings = bookingsDatabase.filter(
     (booking) => booking.userName === userName
@@ -67,7 +67,7 @@ app.get("/course/bookings", (req, res) => {
   res.status(200).json(customers);
 });
 
-// Ny endpoint för att visa bekräftelsessidan
+// Bekräftelsessidan
 app.get("/finalpage.html", (req, res) => {
   // Hämta den senaste bokningen (simulerat)
   const latestBooking = bookingsDatabase[bookingsDatabase.length - 1];
@@ -87,10 +87,9 @@ app.get("/finalpage.html", (req, res) => {
   });
 });
 
-// Simulerad funktion för att skicka bekräftelsemejl
+// Funktion för att skicka bekräftelsemejl
 function sendConfirmationEmail(userName, courseId) {
   const transporter = nodemailer.createTransport({
-    // Ange din e-postleverantörs konfiguration här
     service: "gmail",
     auth: {
       user: "din-email@gmail.com",
