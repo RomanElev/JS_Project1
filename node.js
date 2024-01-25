@@ -2,9 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const path = require("path");
-
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5500;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -115,7 +114,7 @@ function sendConfirmationEmail(userName, courseId) {
   });
 }
 
-app.get("/finalpage", (req, res) => {
+app.get("/finalpage.html", (req, res) => {
   console.log("Hämta bekräftelsesida");
 });
 
