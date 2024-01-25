@@ -1,0 +1,19 @@
+{
+  "name": "js_project1",
+  "version": "1.0.0",
+  "description": "My firtst JS and Json project.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomanElev/JS_Project1.git"
+  },
+  "author": "RomanElev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RomanElev/JS_Project1/issues"
+  },
+  "homepage": "https://github.com/RomanElev/JS_Project1#readme"
+}
