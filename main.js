@@ -22,7 +22,7 @@ const coursesData = [
   },
 ];
 
-// Funktion för att testa mina kurser.
+// testar mina kurser.
 function renderCourses() {
   const coursesContainer = document.getElementById("courses");
 
@@ -32,7 +32,7 @@ function renderCourses() {
   });
 }
 
-// Beskriver mina kurser har for att testa mig. Ist for att skriva i html.
+// mina kurser har for att testa mig. Ist for att skriva i html.
 function createCourseElement(course) {
   const courseElement = document.createElement("div");
   courseElement.classList.add("course");
@@ -50,4 +50,8 @@ function createCourseElement(course) {
   return courseElement;
 }
 
-window.onload = renderCourses;
+if (typeof window !== "undefined") {
+  window.onload = renderCourses;
+}
+
+// problemet med att få igång json server på korrekt sätt kvarstår

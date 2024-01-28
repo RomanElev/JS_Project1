@@ -3,30 +3,29 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const path = require("path");
 const app = express();
-const PORT = process.env.PORT || 5500;
+const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// En lista med bokade kurser och nya kurser för användare
+// lista med bokningar
 const bookingsDatabase = [];
 const coursesDatabase = [];
 
-// Endpoint för att boka en kurs
+// kurs bokning
 app.post("/book-course", (req, res) => {
   const { userName, courseId, paymentInfo } = req.body;
 
-  // Lagring utav bokningsinformationen i databasen
   const bookingDetails = { userName, courseId, paymentInfo };
   bookingsDatabase.push(bookingDetails);
 
-  // Skicka bekräftelsemejl (simulerad e-post)
+  // bekr mejl
   sendConfirmationEmail(userName, courseId);
 
   res.status(200).send("Bokning genomförd.");
 });
 
-// Endpoint för att hämta användarens bokningshistorik
+// tidigare bokningаr?
 app.get("/user/bookings", (req, res) => {
   // Hämta bokningshistorik från databasen
   const userName = req.query.userName;
@@ -37,27 +36,25 @@ app.get("/user/bookings", (req, res) => {
   res.status(200).json(userBookings);
 });
 
-// Endpoint för att lägga till ny kurs
+// ny kurs
 app.post("/add-course", (req, res) => {
   const { courseTitle, courseNumber, courseDuration, courseCost } = req.body;
 
-  // Lägga till ny kurs i databasen (simulerad lagring)
   const newCourse = { courseTitle, courseNumber, courseDuration, courseCost };
   coursesDatabase.push(newCourse);
 
   res.status(200).send("Ny kurs tillagd.");
 });
 
-// Endpoint för att lista kunder som har bokat en kurs
+// bokningar?
 app.get("/course/bookings", (req, res) => {
   const courseId = req.query.courseId;
 
-  // Filtrera bokningsdatabasen för att hitta bokningar för den specifika kursen
   const courseBookings = bookingsDatabase.filter(
     (booking) => booking.courseId === courseId
   );
 
-  // Hämta kundinformation från varje bokning
+  // info om bokningar
   const customers = courseBookings.map((booking) => ({
     userName: booking.userName,
     email: booking.email,
@@ -69,16 +66,12 @@ app.get("/course/bookings", (req, res) => {
 
 // Bekräftelsessidan
 app.get("/finalpage.html", (req, res) => {
-  // Hämta den senaste bokningen (simulerat)
   const latestBooking = bookingsDatabase[bookingsDatabase.length - 1];
-
-  // Hämta kursinformation baserat på kurs-ID från bokningen
   const courseId = latestBooking.courseId;
   const courseDetails = coursesDatabase.find(
     (course) => course.courseId === courseId
   );
 
-  // Skicka kursinformation till bekräftelsessidan
   res.sendFile(path.join(__dirname, "finalpage.html"), {
     courseTitle: courseDetails.courseTitle,
     courseNumber: courseDetails.courseNumber,
@@ -87,7 +80,7 @@ app.get("/finalpage.html", (req, res) => {
   });
 });
 
-// Funktion för att skicka bekräftelsemejl
+// mail
 function sendConfirmationEmail(userName, courseId) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
