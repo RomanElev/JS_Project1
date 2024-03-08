@@ -22,18 +22,18 @@ const coursesData = [
   },
 ];
 
-// testar mina kurser.
-function renderCourses() {
+// Testar mina kurser.
+const renderCourses = () => {
   const coursesContainer = document.getElementById("courses");
 
   coursesData.forEach((course) => {
     const courseElement = createCourseElement(course);
     coursesContainer.appendChild(courseElement);
   });
-}
+};
 
-// mina kurser har for att testa mig. Ist for att skriva i html.
-function createCourseElement(course) {
+// Mina kurser har för att testa mig. Istället för att skriva i HTML.
+const createCourseElement = (course) => {
   const courseElement = document.createElement("div");
   courseElement.classList.add("course");
   courseElement.innerHTML = `
@@ -48,10 +48,8 @@ function createCourseElement(course) {
     )}">Detaljer och bokning</a>
   `;
   return courseElement;
-}
+};
 
 if (typeof window !== "undefined") {
   window.onload = renderCourses;
 }
-
-// problemet med att få igång json server på korrekt sätt kvarstår
