@@ -1,4 +1,4 @@
-const coursesData = [
+let coursesData = [
   {
     title: "Webbutveckling med HTML, CSS och JavaScript",
     number: "1",

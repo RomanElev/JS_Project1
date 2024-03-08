@@ -45,3 +45,20 @@ a:hover {
   margin: 20px auto;
   text-align: center;
 }
+
+#adminButton {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute; /* Lägg till absolut position för att positionera knappen inuti headern */
+  top: 5%; /* Placera knappen 50% från toppen av headern */
+  right: 20px; /* Justera högermarginalen efter behov */
+  transform: translateY(-50%); /* Centrera knappen vertikalt */
+}
+
+#adminButton:hover {
+  background-color: #2980b9;
+}
