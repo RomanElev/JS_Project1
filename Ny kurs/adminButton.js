@@ -1,12 +1,12 @@
+import { coursesData, renderCourses } from "./main.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const adminButton = document.getElementById("adminButton");
   const addCourseForm = document.getElementById("addCourseForm");
 
-  if (adminButton) {
-    adminButton.addEventListener("click", () => {
-      window.location.href = "./Ny kurs/addkurs.html";
-    });
-  }
+  adminButton.addEventListener("click", () => {
+    window.location.href = "./main.html";
+  });
 
   if (addCourseForm) {
     addCourseForm.addEventListener("submit", (event) => {

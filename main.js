@@ -22,9 +22,12 @@ let coursesData = [
   },
 ];
 
-// Testar mina kurser.
+//import { coursesData } from "./courses.js";
+
 const renderCourses = () => {
   const coursesContainer = document.getElementById("courses");
+
+  coursesContainer.innerHTML = "";
 
   coursesData.forEach((course) => {
     const courseElement = createCourseElement(course);
@@ -32,7 +35,6 @@ const renderCourses = () => {
   });
 };
 
-// Mina kurser har för att testa mig. Istället för att skriva i HTML.
 const createCourseElement = (course) => {
   const courseElement = document.createElement("div");
   courseElement.classList.add("course");
@@ -50,6 +52,16 @@ const createCourseElement = (course) => {
   return courseElement;
 };
 
-if (typeof window !== "undefined") {
-  window.onload = renderCourses;
+document.addEventListener("click", (event) => {
+  if (event.target.id === "adminButton") {
+    redirectToAdminPage();
+  }
+});
+
+function redirectToAdminPage() {
+  window.location.href = "./Ny kurs/addkurs.html";
 }
+
+document.addEventListener("DOMContentLoaded", renderCourses);
+
+export { coursesData, renderCourses };

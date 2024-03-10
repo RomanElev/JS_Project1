@@ -9,20 +9,27 @@
   <body>
     <header>
       <h1>Välkommen till WestCoast Education</h1>
-      <p>Här kan du hitta och boka våra kurser.</p>
+      <p>Här kan du hitta och boka våra kurser:</p>
     </header>
 
     <section id="courses">
-      <!-- Sektion for kurser men skrev i jc filen ist -->
+      <!-- Sektion för kurser -->
     </section>
 
-    <button id="adminButton">Lägg till kurs</button>
-    <!-- Lägg till en JavaScript-fil för att hantera knappen -->
+    <button id="adminButton" onclick="redirectToAdminPage()">
+      Lägg till kurs
+    </button>
 
-    <script src="./Ny kurs/adminButton.js"></script>
+    <script type="module">
+      import { coursesData, renderCourses } from "./main.js";
 
-    <script src="node.js"></script>
-    <script src="main.js"></script>
-    <script src="lastpage.js"></script>
+      document.addEventListener("DOMContentLoaded", () => {
+        renderCourses();
+      });
+
+      function redirectToAdminPage() {
+        window.location.href = "./Ny kurs/addkurs.html";
+      }
+    </script>
   </body>
 </html>

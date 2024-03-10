@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Hämta kursparametrar från URL:en
   const urlParams = new URLSearchParams(window.location.search);
-  const courseTitle = urlParams.get("courseTitle");
-  const courseNumber = urlParams.get("courseNumber");
-  const courseDuration = urlParams.get("courseDuration");
-  const courseLocation = urlParams.get("courseLocation");
-  const courseDate = urlParams.get("courseDate");
+  const courseTitle = urlParams.get("courseTitle") || "";
+  const courseNumber = urlParams.get("courseNumber") || "";
+  const courseDuration = urlParams.get("courseDuration") || "";
+  const courseLocation = urlParams.get("courseLocation") || "";
+  const courseDate = urlParams.get("courseDate") || "";
 
   // Visa kursinformation på bekräftelsesidan
   displayCourseInformation(
@@ -18,11 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const displayCourseInformation = (title, number, duration, location, date) => {
-  const confirmationDetails = document.getElementById("confirmation-details");
+  const confirmationDetails = document.getElementById("final");
 
-  const courseDetailsElement = document.createElement("div");
-  courseDetailsElement.innerHTML = `
-    <h2>Kursinformation:</h2>
+  if (confirmationDetails) {
+    const courseDetailsElement = document.createElement("div");
+    courseDetailsElement.innerHTML = `
     <p><strong>Kurstitel:</strong> ${title}</p>
     <p><strong>Kursnummer:</strong> ${number}</p>
     <p><strong>Varaktighet:</strong> ${duration}</p>
@@ -30,5 +29,8 @@ const displayCourseInformation = (title, number, duration, location, date) => {
     <p><strong>Datum:</strong> ${date}</p>
   `;
 
-  confirmationDetails.appendChild(courseDetailsElement);
+    confirmationDetails.appendChild(courseDetailsElement);
+  } else {
+    console.error("Elementet med id 'confirmation-details' hittades inte.");
+  }
 };
